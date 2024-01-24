@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taschenrechhner</title>
+    <link rel="stylesheet" href="Taschenrechner.css">
+    <link rel="manifest" href="manifest.webmanifest">
+
+    <script>
+
+        function appendOperation(operation){
+            document.getElementById('Eingabe').innerHTML +=operation;
+        }
+
+        function calculateResult(){
+            let container = document.getElementById('Eingabe');
+            let result = eval(container.innerHTML);
+            container.innerHTML = result;
+        }
+
+        function deletLast() {
+            let container = document.getElementById('Eingabe');
+            if(container.innerHTML.endsWith(' ')){
+                container.innerHTML = container.innerHTML.slice(0, -3);
+            } else {
+            container.innerHTML = container.innerHTML.slice(0, -1);
+            }
+        }
+
+        function reinigen() {
+            let container = document.getElementById('Eingabe');
+           
+            container.innerHTML = container.innerHTML.slice(0, -100000);
+            
+        }
+
+    </script>
+</head>
+<body>
+
+    <div id="Eingabe"></div>
+
+   
+        <table>
+
+            <tr>
+                <td></td>
+                <td></td>
+                <td onclick="reinigen()">AC</td>
+                <td onclick="deletLast()">DEL</td>
+            </tr>
+
+            <tr>
+                <td onclick="appendOperation(7)">7</td>
+                <td onclick="appendOperation(8)">8</td>
+                <td onclick="appendOperation(9)">9</td>
+                <td onclick="appendOperation(' / ')" class="hl">/</td>
+            </tr>
+
+            <tr>
+                <td onclick="appendOperation(4)">4</td>
+                <td onclick="appendOperation(5)">5</td>
+                <td onclick="appendOperation(6)">6</td>
+                <td onclick="appendOperation(' * ')" class="hl">x</td>
+            </tr>
+
+            <tr>
+                <td onclick="appendOperation(1)">1</td>
+                <td onclick="appendOperation(2)">2</td>
+                <td onclick="appendOperation(3)">3</td>
+                <td onclick="appendOperation(' + ')" class="hl">+</td>
+            </tr>
+
+            <tr>
+                <td onclick="appendOperation(0)">0</td>
+                <td onclick="appendOperation(',')">,</td>
+                <td onclick="calculateResult()" class="result">=</td>
+                <td onclick="appendOperation(' - ')"class="hl">-</td>
+            </tr>
+
+        </table>
+
+    
+</body>
+</html>
